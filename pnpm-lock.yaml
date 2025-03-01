@@ -44,6 +44,9 @@ importers:
       honox:
         specifier: ^0.1.38
         version: 0.1.38(hono@4.7.2)(miniflare@3.20250214.1)(wrangler@3.111.0(@cloudflare/workers-types@4.20250224.0))
+      lucide-react:
+        specifier: ^0.477.0
+        version: 0.477.0(react@19.0.0)
       zod:
         specifier: ^3.24.2
         version: 3.24.2
@@ -1633,6 +1636,11 @@ packages:
     resolution: {integrity: sha512-FmGoeD4S05ewj+AkhTY+D+myDvXI6eL27FjHIjoyUkO/uw7WZD1fBVs0QxeYWa7E17CUHJaYX/RUGISCtcrG4Q==}
     engines: {node: '>= 12.0.0'}
 
+  lucide-react@0.477.0:
+    resolution: {integrity: sha512-yCf7aYxerFZAbd8jHJxjwe1j7jEMPptjnaOqdYeirFnEy85cNR3/L+o0I875CYFYya+eEVzZSbNuRk8BZPDpVw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
 
@@ -1801,6 +1809,10 @@ packages:
 
   quote-unquote@1.0.0:
     resolution: {integrity: sha512-twwRO/ilhlG/FIgYeKGFqyHhoEhqgnKVkcmqMKi2r524gz3ZbDTcyFt38E9xjJI2vT+KbRNHVbnJ/e0I25Azwg==}
+
+  react@19.0.0:
+    resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
+    engines: {node: '>=0.10.0'}
 
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
@@ -3233,6 +3245,10 @@ snapshots:
       lightningcss-win32-arm64-msvc: 1.29.1
       lightningcss-win32-x64-msvc: 1.29.1
 
+  lucide-react@0.477.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+
   magic-string@0.25.9:
     dependencies:
       sourcemap-codec: 1.4.8
@@ -3368,6 +3384,8 @@ snapshots:
   queue-microtask@1.2.3: {}
 
   quote-unquote@1.0.0: {}
+
+  react@19.0.0: {}
 
   resolve-pkg-maps@1.0.0: {}
 

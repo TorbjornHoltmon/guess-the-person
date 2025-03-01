@@ -1,12 +1,11 @@
 // app/routes/games/index.ts
+import { zValidator } from '@hono/zod-validator'
+import { eq } from 'drizzle-orm'
+import { drizzle } from 'drizzle-orm/d1'
 import { Hono } from 'hono'
 import { z } from 'zod'
-import { zValidator } from '@hono/zod-validator'
-import { drizzle } from 'drizzle-orm/d1'
-import { eq } from 'drizzle-orm'
-
+import { answersTable, gamesTable, usersTable } from '../../database/schemas'
 // Import your tables (defined via Drizzle schemas)
-import { gamesTable, usersTable, answersTable } from '../../database/schemas'
 
 // Bindings for Cloudflare D1
 const app = new Hono<{
