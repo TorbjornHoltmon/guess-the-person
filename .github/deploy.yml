@@ -1,0 +1,73 @@
+name: Deploy
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches:
+      - 'not-yet'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    env:
+      NODE_OPTIONS: '--max-old-space-size=4096'
+      CLOUDFLARE_D1_TOKEN: ${{ secrets.CLOUDFLARE_D1_TOKEN }}
+      CLOUDFLARE_DATABASE_ID: ${{ secrets.CLOUDFLARE_DATABASE_ID }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+    timeout-minutes: 10
+    environment: dev
+    name: Build and deploy preview web
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Get package mananger version
+        id: package-json
+        run: |
+          value=$(jq -r '.packageManager' package.json)
+          echo "packageManager=$value" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v4
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-install.outputs.dest }}
+          key: ${{ runner.os }}-pnpm-${{steps.package-json.outputs.packageManager}}-${{ hashFiles('./pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-${{steps.package-json.outputs.packageManager}}-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        workingDirectory: 'apps/guess-the-person'
+        run: pnpm run build
+
+      - name: Deploy
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          packageManager: pnpm
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: apps/guess-the-person
+          command: deploy
+
+      - name: Migrate db
+        working-directory: 'packages/core'
+        run: pnpm run migrate
