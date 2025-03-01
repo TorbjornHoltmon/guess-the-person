@@ -1,6 +1,6 @@
 import { createRoute } from 'honox/factory'
-import App from '../islands/app'
+import { HomePage } from '../islands/home-page'
 
 export default createRoute((c) => {
-  return c.render(<App />)
+  return c.render(<HomePage />)
 })

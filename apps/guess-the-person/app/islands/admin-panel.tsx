@@ -36,10 +36,6 @@ export const AdminPanel = ({
     onStartGame(users)
   }
 
-  const toggleViewMode = () => {
-    setViewMode(viewMode === 'normal' ? 'cartoon' : 'normal')
-  }
-
   return (
     <div className="max-w-4xl mx-auto bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden p-8">
       <div className="flex items-center justify-between mb-8">

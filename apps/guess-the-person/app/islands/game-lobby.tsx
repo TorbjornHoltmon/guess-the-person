@@ -1,17 +1,16 @@
 import { useState } from 'hono/jsx'
 
 interface GameLobbyProps {
-  onCreateGame: () => void
+  onCreateGame: (gameName: string) => void
   onJoinGame: (code: string) => void
 }
 
 export const GameLobby = ({ onCreateGame, onJoinGame }: GameLobbyProps) => {
   const [gameCode, setGameCode] = useState('')
-  const [error, setError] = useState('')
+  const [gameName, setGameName] = useState('')
 
   const handleJoinGame = () => {
     if (gameCode.trim().length < 4) {
-      setError('Please enter a valid game code')
       return
     }
 
@@ -38,10 +37,27 @@ export const GameLobby = ({ onCreateGame, onJoinGame }: GameLobbyProps) => {
       </div>
 
       <h1 className="text-3xl font-bold text-center mb-8">Guess the Person</h1>
+      <div className="space-y-4">
+        <div>
+          <label htmlFor="gameCode" className="block text-sm font-medium text-gray-300 mb-1">
+            Game name
+          </label>
+          <input
+            type="text"
+            id="gameName"
+            value={gameName}
+            onChange={(e) => {
+              setGameName((e.target as HTMLInputElement).value.toUpperCase())
+            }}
+            placeholder="Enter game name"
+            className="w-full bg-slate-900/70 border border-gray-700 rounded-lg py-3 px-4 text-white placeholder-gray-500 mb-3"
+          />
+        </div>
+      </div>
 
       <div className="space-y-6">
         <button
-          onClick={onCreateGame}
+          onClick={() => onCreateGame(gameName)}
           className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center"
         >
           <svg
@@ -79,13 +95,11 @@ export const GameLobby = ({ onCreateGame, onJoinGame }: GameLobbyProps) => {
               value={gameCode}
               onChange={(e) => {
                 setGameCode((e.target as HTMLInputElement).value.toUpperCase())
-                setError('')
               }}
               placeholder="Enter game code"
               className="w-full bg-slate-900/70 border border-gray-700 rounded-lg py-3 px-4 text-white placeholder-gray-500"
               maxLength={6}
             />
-            {error && <p className="mt-1 text-red-400 text-sm">{error}</p>}
           </div>
 
           <button

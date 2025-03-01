@@ -3,7 +3,6 @@ import { AdminPanel } from './admin-panel'
 import { GameHeader } from './game-header'
 import { GameLobby } from './game-lobby'
 import { GamePlay } from './game-play'
-import { Leaderboard } from './leaderboard'
 import { mockUsers } from './mock-data' // Import mock data
 import { Leaderboard as LeaderboardType, User, Users } from './types'
 import { UserProfile } from './user-profile'
@@ -138,8 +137,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 to-gray-800 text-white">
-      <GameHeader gameCode={gameCode} onToggleLeaderboard={toggleLeaderboard} showLeaderboard={showLeaderboard} />
-
       <div className="container mx-auto px-4 py-8">
         {gameState === 'lobby' && <GameLobby onCreateGame={handleCreateGame} onJoinGame={handleJoinGame} />}
 
@@ -165,8 +162,6 @@ function App() {
             onUpdateScore={updateScore}
           />
         )}
-
-        {showLeaderboard && <Leaderboard leaderboard={leaderboard} />}
       </div>
     </div>
   )
