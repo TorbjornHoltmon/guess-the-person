@@ -69,6 +69,6 @@ jobs:
           workingDirectory: apps/guess-the-person
           command: deploy
 
-      # - name: Migrate db
-      #   working-directory: 'packages/core'
-      #   run: pnpm run migrate
+      - name: Migrate db
+        working-directory: 'apps/guess-the-person'
+        run: pnpm run migrate

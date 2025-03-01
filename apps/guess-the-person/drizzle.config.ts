@@ -11,8 +11,8 @@ if (!cloudflareDatabaseId || !cloudflareAccountId || !cloudflareD1Token) {
 }
 
 export default defineConfig({
-  schema: './src/schema/**/*.ts',
-  out: './migrations',
+  schema: './app/database/schemas.ts',
+  out: './app/database/migrations',
   dialect: 'sqlite',
   driver: 'd1-http',
   dbCredentials: {

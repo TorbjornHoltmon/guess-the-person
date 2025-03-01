@@ -29,6 +29,12 @@ importers:
 
   apps/guess-the-person:
     dependencies:
+      drizzle-kit:
+        specifier: ^0.30.5
+        version: 0.30.5
+      drizzle-orm:
+        specifier: ^0.40.0
+        version: 0.40.0(@cloudflare/workers-types@4.20250224.0)(bun-types@1.2.4)(gel@2.0.0)
       hono:
         specifier: ^4.7.2
         version: 4.7.2
@@ -88,12 +94,6 @@ importers:
       vitest:
         specifier: ^3.0.7
         version: 3.0.7(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)
-
-  scripts/ci-cd:
-    devDependencies:
-      '@types/bun':
-        specifier: ^1.2.4
-        version: 1.2.4
 
 packages:
 
@@ -1108,9 +1108,6 @@ packages:
     resolution: {integrity: sha512-BIKJO+hwdIsN7V6I7SziMZIVHWWMsV/uCQKYEbeiGRDRld+TkqyRRl9+dQ0MCXbhcVr+D9T/qX2E84kT7V281g==}
     peerDependencies:
       vite: ^5.2.0 || ^6
-
-  '@types/bun@1.2.4':
-    resolution: {integrity: sha512-QtuV5OMR8/rdKJs213iwXDpfVvnskPXY/S0ZiFbsTjQZycuqPbMW8Gf/XhLfwE5njW8sxI2WjISURXPlHypMFA==}
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
@@ -2840,10 +2837,6 @@ snapshots:
       tailwindcss: 4.0.9
       vite: 6.2.0(@types/node@22.13.8)(jiti@2.4.2)(lightningcss@1.29.1)
 
-  '@types/bun@1.2.4':
-    dependencies:
-      bun-types: 1.2.4
-
   '@types/estree@1.0.6': {}
 
   '@types/node@22.13.8':
@@ -2853,6 +2846,7 @@ snapshots:
   '@types/ws@8.5.14':
     dependencies:
       '@types/node': 22.13.8
+    optional: true
 
   '@typescript-eslint/types@7.18.0': {}
 
@@ -3001,6 +2995,7 @@ snapshots:
     dependencies:
       '@types/node': 22.13.8
       '@types/ws': 8.5.14
+    optional: true
 
   cac@6.7.14: {}
 
