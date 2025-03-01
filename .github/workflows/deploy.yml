@@ -56,7 +56,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        workingDirectory: 'apps/guess-the-person'
+        working-directory: 'apps/guess-the-person'
         run: pnpm run build
 
       - name: Deploy
