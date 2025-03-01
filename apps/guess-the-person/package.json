@@ -7,14 +7,17 @@
     "preview": "wrangler dev",
     "deploy": "pnpm run build && wrangler deploy",
     "create-migration": "drizzle-kit generate",
-    "migrate": "drizzle-kit migrate"
+    "migrate": "drizzle-kit migrate",
+    "migrate-local": "wrangler d1 migrations apply guess-the-person --local"
   },
   "private": true,
   "dependencies": {
     "hono": "^4.7.2",
     "honox": "^0.1.38",
     "drizzle-kit": "^0.30.5",
-    "drizzle-orm": "^0.40.0"
+    "drizzle-orm": "^0.40.0",
+    "@hono/zod-validator": "^0.4.3",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250224.0",

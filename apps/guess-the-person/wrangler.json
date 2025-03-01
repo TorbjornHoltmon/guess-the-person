@@ -18,6 +18,7 @@
   },
   "d1_databases": [
     {
+      "migrations_dir": "app/database/migrations",
       "binding": "DB",
       "database_name": "guess-the-person",
       "database_id": "fe510d1d-170c-46eb-a639-3d96ded91bf4"
